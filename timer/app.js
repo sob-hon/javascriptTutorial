@@ -17,8 +17,26 @@ class Timer {
     };
     
     tick = () => {
-        console.log("tick");
+        // old way of implementing this code
+            // this.timeRemaining = parseFloat(this.durationInput.value);
+            // this.durationInput.value = this.timeRemaining - 1;
+        // newer approach get and set
+            // this.timeRemaining = this.presentTime;
+            // this.presentTime = this.timeRemaining - 1;
+        // very newer approach
+        this.presentTime = this.presentTime - 1;
+        if(!this.presentTime){
+            this.pause();
+        }
     };
+
+    get presentTime() {
+        return parseFloat(this.durationInput.value);
+    }
+
+    set presentTime(time) {
+        return this.durationInput.value = time;
+    }
 
     pause = () => {
         clearInterval(this.timerId);
