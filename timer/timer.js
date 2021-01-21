@@ -33,14 +33,26 @@ class Timer {
             // this.timeRemaining = this.presentTime;
             // this.presentTime = this.timeRemaining - 1;
         // very newer approach
-        if(this.onTick) {
-            this.onTick(this.presentTime);
-        }
-        this.presentTime = this.presentTime - 0.02;
-        if(!this.presentTime){
+        // if(this.onTick) {
+        //     this.onTick(this.presentTime);
+        // }
+        // this.presentTime = this.presentTime - 0.02;
+        // if(!this.presentTime){
+        //     this.pause();
+        //     if(this.onComplete) {
+        //         this.onComplete();
+        //     }
+        // }
+        if(this.presentTime <= 0){
             this.pause();
             if(this.onComplete) {
                 this.onComplete();
+            }
+        }
+        else{
+            this.presentTime = this.presentTime - 0.02;
+            if(this.onTick) {
+                this.onTick(this.presentTime);
             }
         }
     };
